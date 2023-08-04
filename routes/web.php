@@ -1,6 +1,8 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{any?}', function() {
-    return view('application');
-})->where('any', '.*');
+Route::get('/not', function () {
+  return Inertia::render('not-authorized');
+});
+
+Route::get('login', function () {
+    return Inertia::render('login');
+})->name('login');
