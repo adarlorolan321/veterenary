@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,3 +23,12 @@ Route::get('/not', function () {
 Route::get('login', function () {
     return Inertia::render('login');
 })->name('login');
+
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
+Route::get('register', function () {
+    return Inertia::render('register');
+})->name('register');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [DashboardController::class, 'index'])->name('dashboard.index');
+
+});
