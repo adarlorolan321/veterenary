@@ -1,33 +1,91 @@
 <script setup>
-import { useSkins } from '@core/composable/useSkins'
+import navItems from '@/navigation/horizontal'
 import { useThemeConfig } from '@core/composable/useThemeConfig'
+import { themeConfig } from '@themeConfig'
 
-// @layouts plugin
-import { AppContentLayoutNav } from '@layouts/enums'
+// Components
+import Footer from '@/layouts/components/Footer.vue'
+import NavBarI18n from '@/layouts/components/NavBarI18n.vue'
+import NavBarNotifications from '@/layouts/components/NavBarNotifications.vue'
+import NavbarShortcuts from '@/layouts/components/NavbarShortcuts.vue'
+import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
+import NavSearchBar from '@/layouts/components/NavSearchBar.vue'
+import UserProfile from '@/layouts/components/UserProfile.vue'
+import { HorizontalNavLayout } from '@layouts'
+import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 
-const DefaultLayoutWithHorizontalNav = defineAsyncComponent(() => import('./components/DefaultLayoutWithHorizontalNav.vue'))
-const DefaultLayoutWithVerticalNav = defineAsyncComponent(() => import('./components/DefaultLayoutWithVerticalNav.vue'))
-const { width: windowWidth } = useWindowSize()
-const { appContentLayoutNav, switchToVerticalNavOnLtOverlayNavBreakpoint } = useThemeConfig()
-
-// Remove below composable usage if you are not using horizontal nav layout in your app
-switchToVerticalNavOnLtOverlayNavBreakpoint(windowWidth)
-
-const { layoutAttrs, injectSkinClasses } = useSkins()
-
-injectSkinClasses()
+const { appRouteTransition } = useThemeConfig()
 </script>
 
 <template>
-  <template v-if="appContentLayoutNav === AppContentLayoutNav.Vertical">
-    <DefaultLayoutWithVerticalNav v-bind="layoutAttrs" />
-  </template>
-  <template v-else>
-    <DefaultLayoutWithHorizontalNav v-bind="layoutAttrs" />
-  </template>
+  <VCard>
+    <VLayout>
+      <VAppBar
+        :elevation="2"
+        class="d-flex justify-end "
+        theme="dark"
+      >
+        <!-- <NavbarThemeSwitcher /> -->
+        <UserProfile class="ml-auto mr-2" />
+      </VAppBar>
+      <VNavigationDrawer
+        class="bg-deep-purple"
+        theme="dark"
+        permanent
+      >
+        <VList class="menu" color="transparent">
+          <VListItem
+            
+            prepend-icon="mdi-view-dashboard"
+            title="Dashboard"
+          />
+          <VListItem
+            prepend-icon="mdi-account-box"
+            title="Account"
+          />
+          <VListItem
+            prepend-icon="mdi-gavel"
+            title="Admin"
+          />
+        </VList>
+    
+        <template #append>
+          <div class="pa-2">
+            <VBtn block>
+              Logout
+            </VBtn>
+          </div>
+        </template>
+      </VNavigationDrawer>
+        
+      
+      <VMain style="min-height: 400px; " >
+        <div class="custom-main">
+          <slot />
+        </div>
+       
+      </VMain>
+
+      <div class="main mt-5">
+        
+      </div>
+    </VLayout>
+  </VCard>
 </template>
 
-<style lang="scss">
-// As we are using `layouts` plugin we need its styles to be imported
-@use "@layouts/styles/default-layout";
+  
+<script>
+export default {
+  data () {
+    return {
+      drawer: true,
+      rail: true,
+    }
+  },
+}
+</script>
+
+<style scoped>
+ 
+   
 </style>

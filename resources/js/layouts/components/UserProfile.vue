@@ -1,26 +1,19 @@
 <script setup>
 import { initialAbility } from '@/plugins/casl/ability'
 import { useAppAbility } from '@/plugins/casl/useAppAbility'
+import { usePage, router } from "@inertiajs/vue3"
 
-const router = useRouter()
 const ability = useAppAbility()
 const userData = JSON.parse(localStorage.getItem('userData') || 'null')
 
 const logout = () => {
+  router.post(route("logout"))
 
-  // Remove "userData" from localStorage
-  localStorage.removeItem('userData')
+}
 
-  // Remove "accessToken" from localStorage
-  localStorage.removeItem('accessToken')
-  router.push('/login').then(() => {
+const profile = () => {
+  router.get(route("profile.index"))
 
-    // Remove "userAbilities" from localStorage
-    localStorage.removeItem('userAbilities')
-
-    // Reset ability to initial ability
-    ability.update(initialAbility)
-  })
 }
 </script>
 
@@ -83,16 +76,18 @@ const logout = () => {
               </VListItemAction>
             </template>
 
-            <VListItemTitle class="font-weight-semibold">
+            <!--
+              <VListItemTitle class="font-weight-semibold">
               {{ userData.fullName }}
-            </VListItemTitle>
-            <VListItemSubtitle>{{ userData.role }}</VListItemSubtitle>
+              </VListItemTitle>
+              <VListItemSubtitle>{{ userData.role }}</VListItemSubtitle> 
+            -->
           </VListItem>
 
           <VDivider class="my-2" />
 
           <!-- 👉 Profile -->
-          <VListItem :to="{ name: 'apps-user-view-id', params: { id: 21 } }">
+          <VListItem @click="profile">
             <template #prepend>
               <VIcon
                 class="me-2"

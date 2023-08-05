@@ -1,0 +1,22 @@
+{
+	"name": "innsite19/crud-generator",
+	"autoload": {
+		"psr-4": {
+			"Innsite19\\CrudGenerator\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "Mark Alfred Macapagal",
+			"email": "mark.alfred072915@gmail.com"
+		}
+	],
+	"require": {},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Innsite19\\CrudGenerator\\CrudGeneratorServiceProvider"
+			]
+		}
+	}
+}

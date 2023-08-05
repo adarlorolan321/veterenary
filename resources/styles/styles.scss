@@ -1,1 +1,21 @@
 // Write your overrides
+.container{
+    margin: 60px 20px 20px 0;
+    
+}
+.custom-main{
+    padding: 50px !important;
+   }
+
+   .menu{
+       .v-list-item{
+          cursor: pointer;
+          
+       }
+       .v-list-item:hover{
+        
+          background-color: #7367f0;
+        
+     }
+      
+   }
