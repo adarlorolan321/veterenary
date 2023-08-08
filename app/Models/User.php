@@ -43,4 +43,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleAttribute()
+    {
+        return $this->getRoleNames()->implode(', ');
+    }
+    // protected static function  booted()
+    // {
+    //     static::created(function ($user) {
+    //         $user->name = $user->first_name . ' ' . $user->last_name;
+            
+    //     });
+    //     static::creating(function ($user) {
+    //         $user->name = $user->first_name . ' ' . $user->last_name;
+    //     });
+    // }
 }

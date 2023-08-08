@@ -1,6 +1,10 @@
 <script setup>
 import Layout from "@/layouts/default.vue"
 
+import { usePage } from "@inertiajs/vue3";
+
+const authUser =  usePage().props
+
 const tab = ref('personal-info')
 const firstName = ref('')
 const lastName = ref('')
@@ -54,6 +58,7 @@ export default {
 
 
 <template>
+  {{ authUser     }}
   <VTabs v-model="tab">
     <VTab value="personal-info">
       Personal Info

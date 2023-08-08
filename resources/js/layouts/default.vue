@@ -59,9 +59,12 @@ const { appRouteTransition } = useThemeConfig()
       </VNavigationDrawer>
         
       
-      <VMain style="min-height: 400px; " >
+      <VMain style="min-height: 100vh; " >
         <div class="custom-main">
-          <slot />
+          <VCard class="px-5 py-5">
+            <slot />
+          </VCard>
+          
         </div>
        
       </VMain>

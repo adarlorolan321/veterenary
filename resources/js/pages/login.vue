@@ -24,19 +24,20 @@ const authThemeImg = useGenerateImageVariant(
 );
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark);
 
+defineProps({
+  canResetPassword: Boolean,
+  status: String,
+});
+
 const form = useForm({
-  email: "",
-  password: "",
+  email:  null,
+  password: null,
   remember: false,
 });
 
 const isPasswordVisible = ref(false);
 const refForm = ref();
 
-const errors = ref({
-  email: undefined,
-  password: undefined,
-});
 
 const submit = (d) => {
   refForm?.value?.validate().then((res) => {
@@ -50,11 +51,7 @@ const submit = (d) => {
         },
       });
 
-      form.post("/login", {
-        // preserveScroll: true,
-        // preserveState: true,
-        onSuccess: (data) => {},
-      });
+  
     }
   });
 };
@@ -88,18 +85,7 @@ const submit = (d) => {
             Please sign-in to your account and start the adventure
           </p>
         </VCardText>
-        <VCardText>
-          <VAlert color="primary" variant="tonal">
-            <p class="text-caption mb-2">
-              Admin Email: <strong>admin@demo.com</strong> / Pass:
-              <strong>admin</strong>
-            </p>
-            <p class="text-caption mb-0">
-              Client Email: <strong>client@demo.com</strong> / Pass:
-              <strong>client</strong>
-            </p>
-          </VAlert>
-        </VCardText>
+        
         <VCardText>
           <VForm @submit.prevent="submit" ref="refForm" validate-on="submit">
             <VRow>
@@ -109,8 +95,9 @@ const submit = (d) => {
                   v-model="form.email"
                   label="Email"
                   type="email"
+
                   :rules="[requiredValidator, emailValidator]"
-                  :error-messages="errors.email"
+                  :error-messages="form.errors.email"
                 />
               </VCol>
 
@@ -121,7 +108,7 @@ const submit = (d) => {
                   label="Password"
                   :rules="[requiredValidator]"
                   :type="isPasswordVisible ? 'text' : 'password'"
-                  :error-messages="errors.password"
+                  :error-messages="form.errors.password"
                   :append-inner-icon="
                     isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'
                   "

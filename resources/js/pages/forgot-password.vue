@@ -6,10 +6,37 @@ import authV2ForgotPasswordIllustrationDark from '@images/pages/auth-v2-forgot-p
 import authV2ForgotPasswordIllustrationLight from '@images/pages/auth-v2-forgot-password-illustration-light.png'
 import authV2MaskDark from '@images/pages/misc-mask-dark.png'
 import authV2MaskLight from '@images/pages/misc-mask-light.png'
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const email = ref('')
 const authThemeImg = useGenerateImageVariant(authV2ForgotPasswordIllustrationLight, authV2ForgotPasswordIllustrationDark)
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
+
+const refForm = ref(null)
+
+const form = useForm({
+  email: '',
+  
+})
+
+const submit = () => {
+
+  refForm?.value?.validate().then((res) => {
+    const { valid: isValid } = res;
+    if (isValid) {
+      form.post("/forgot-password", {
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: (data) => {
+          console.log(data);
+        },
+      });
+
+    }
+  });
+ 
+}
+
 </script>
 
 <template>
@@ -61,12 +88,13 @@ const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
         </VCardText>
 
         <VCardText>
-          <VForm @submit.prevent="() => {}">
+          <VForm @submit.prevent="submit" ref="refForm" validate-on="submit">
             <VRow>
               <!-- email -->
               <VCol cols="12">
                 <VTextField
-                  v-model="email"
+                  v-model="form.email"
+                  :error-messages="form.errors.email"
                   label="Email"
                   type="email"
                 />

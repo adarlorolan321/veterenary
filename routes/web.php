@@ -19,17 +19,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-  return Inertia::render('not-authorized');
+  return Inertia::render('login');
 });
 
-// Route::get('login', function () {
-//     return Inertia::render('login');
-// })->name('login');
-
-// Route::post('login', [AuthenticatedSessionController::class, 'store']);
-// Route::get('register', function () {
-//     return Inertia::render('register');
-// })->name('register');
 
 
 Route::middleware('auth')->group(function () {
