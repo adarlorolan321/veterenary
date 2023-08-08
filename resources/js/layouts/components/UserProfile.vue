@@ -6,6 +6,7 @@ import { usePage, router } from "@inertiajs/vue3"
 const ability = useAppAbility()
 const userData = JSON.parse(localStorage.getItem('userData') || 'null')
 
+const user = usePage().props.user
 
 const logout = () => {
   router.post(route("logout"))
@@ -29,6 +30,7 @@ const profile = () => {
     bordered
     color="success"
   >
+  <!-- {{ user }} -->
     <VAvatar
       class="cursor-pointer"
       color="primary"

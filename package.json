@@ -25,6 +25,7 @@
     "prismjs": "^1.29.0",
     "roboto-fontface": "^0.10.0",
     "sass": "^1.56.1",
+    "toastr": "^2.1.4",
     "unplugin-vue-define-options": "^0.12.8",
     "vue": "^3.2.45",
     "vue-chartjs": "^4.1.1",

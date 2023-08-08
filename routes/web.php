@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,6 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('layout');
     });
     Route::resource('profile', ProfileController::class);
-
+    Route::resource('dashboard', DashboardController::class);
 });
 require __DIR__ . '/auth.php';
