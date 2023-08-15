@@ -6,6 +6,8 @@ import { usePage, router } from "@inertiajs/vue3"
 const ability = useAppAbility()
 const userData = JSON.parse(localStorage.getItem('userData') || 'null')
 
+const user = usePage().props.user
+
 const logout = () => {
   router.post(route("logout"))
 
@@ -15,6 +17,8 @@ const profile = () => {
   router.get(route("profile.index"))
 
 }
+
+
 </script>
 
 <template>
@@ -26,6 +30,7 @@ const profile = () => {
     bordered
     color="success"
   >
+  <!-- {{ user }} -->
     <VAvatar
       class="cursor-pointer"
       color="primary"
@@ -71,11 +76,12 @@ const profile = () => {
                       v-else
                       icon="tabler-user"
                     />
+                   
                   </VAvatar>
                 </VBadge>
+                
               </VListItemAction>
             </template>
-
             <!--
               <VListItemTitle class="font-weight-semibold">
               {{ userData.fullName }}

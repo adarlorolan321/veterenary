@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -19,17 +20,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-  return Inertia::render('not-authorized');
+  return Inertia::render('login');
 });
 
-// Route::get('login', function () {
-//     return Inertia::render('login');
-// })->name('login');
-
-// Route::post('login', [AuthenticatedSessionController::class, 'store']);
-// Route::get('register', function () {
-//     return Inertia::render('register');
-// })->name('register');
 
 
 Route::middleware('auth')->group(function () {
@@ -38,6 +31,6 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('layout');
     });
     Route::resource('profile', ProfileController::class);
-
+    Route::resource('dashboard', DashboardController::class);
 });
 require __DIR__ . '/auth.php';
