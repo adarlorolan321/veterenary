@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Pet\PetController;
 use App\Http\Controllers\ProfileController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('layout', function () {
         return Inertia::render('layout');
     });
+    Route::resource('pets', PetController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('dashboard', DashboardController::class);
 });

@@ -37,7 +37,13 @@ const { appRouteTransition } = useThemeConfig();
             title="Dashboard"
             :href="route('dashboard.index')"
           />
-          <VListItem prepend-icon="mdi-account-box" title="Account" />
+          <VListItem
+          :class="route().current() == 'pets.index' ? 'active' : ''"
+            
+            
+            :href="route('pets.index')"
+          prepend-icon="tabler-paw-filled" title="Pets" />
+
           <VListItem prepend-icon="mdi-gavel" title="Admin" />
         </VList>
 

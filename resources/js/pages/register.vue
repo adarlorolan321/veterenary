@@ -41,7 +41,11 @@ const isPasswordConfirmVisible = ref(false);
 
 const form = useForm({
   first_name: null,
-  last_name:null,
+  last_name: null,
+  barangay: null,
+  mobile_no: null,
+  city: null,
+  province: null,
   email: null,
   password: null,
   password_confirmation: null,
@@ -65,7 +69,7 @@ const submit = () => {
 
 <template>
   <VRow no-gutters class="auth-wrapper">
-    <VCol lg="8" class="d-none d-lg-flex">
+    <VCol lg="6" class="d-none d-lg-flex">
       <div class="position-relative auth-bg rounded-lg w-100 ma-8 me-0">
         <div class="d-flex align-center justify-center w-100 h-100">
           <VImg
@@ -79,7 +83,7 @@ const submit = () => {
       </div>
     </VCol>
 
-    <VCol cols="12" lg="4" class="d-flex align-center justify-center">
+    <VCol cols="12" lg="6" class="d-flex align-center justify-center">
       <VCard flat :max-width="500" class="mt-12 mt-sm-0 pa-4">
         <VCardText>
           <VNodeRenderer :nodes="themeConfig.app.logo" class="mb-6" />
@@ -93,7 +97,7 @@ const submit = () => {
           <VForm ref="refForm" @submit.prevent="submit">
             <VRow>
               <!-- name -->
-              <VCol cols="12">
+              <VCol cols="6">
                 <VTextField
                   v-model="form.first_name"
                   :rules="[requiredValidator, alphaDashValidator]"
@@ -101,12 +105,44 @@ const submit = () => {
                   :error-messages="form.errors.first_name"
                 />
               </VCol>
-              <VCol cols="12">
+              <VCol cols="6">
                 <VTextField
                   v-model="form.last_name"
                   :rules="[requiredValidator, alphaDashValidator]"
                   label="Last Name"
                   :error-messages="form.errors.last_name"
+                />
+              </VCol>
+              <VCol cols="12">
+                <VTextField
+                  v-model="form.barangay"
+                  :rules="[requiredValidator, alphaDashValidator]"
+                  label="Barangay"
+                  :error-messages="form.errors.barangay"
+                />
+              </VCol>
+               <VCol cols="6">
+                <VTextField
+                  v-model="form.city"
+                  :rules="[requiredValidator, alphaDashValidator]"
+                  label="City/Municipality"
+                  :error-messages="form.errors.city"
+                />
+              </VCol>
+              <VCol cols="6">
+                <VTextField
+                  v-model="form.province"
+                  :rules="[requiredValidator, alphaDashValidator]"
+                  label="Province"
+                  :error-messages="form.errors.province"
+                />
+              </VCol>
+              <VCol cols="12">
+                <VTextField
+                  v-model="form.mobile_no"
+                  :rules="[requiredValidator, alphaDashValidator]"
+                  label="Mobile No."
+                  :error-messages="form.errors.mobile_no"
                 />
               </VCol>
 
@@ -120,6 +156,7 @@ const submit = () => {
                   :error-messages="form.errors.email"
                 />
               </VCol>
+
 
               <!-- password -->
               <VCol cols="12">
