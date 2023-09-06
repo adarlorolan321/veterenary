@@ -73,27 +73,27 @@ const handleSubmit = () => {
 
 const guestsOptions = [
   {
-    avatar: avatar1,
+    id: 1,
     name: 'Jane Foster',
   },
   {
-    avatar: avatar3,
+    id: 2,
     name: 'Donna Frank',
   },
   {
-    avatar: avatar5,
+    id: 3,
     name: 'Gabrielle Robertson',
   },
   {
-    avatar: avatar7,
+    id: 4,
     name: 'Lori Spears',
   },
   {
-    avatar: avatar6,
+    id: 5,
     name: 'Sandy Vega',
   },
   {
-    avatar: avatar2,
+    id: 6,
     name: 'Cheryl May',
   },
 ]
@@ -275,14 +275,14 @@ const dialogModelValueUpdate = val => {
               <!-- 👉 Guests -->
               <VCol cols="12">
                 <VSelect
-                  v-model="event.extendedProps.guests"
+                  v-model="event.pet_id"
                   label="Guests"
                   :items="guestsOptions"
                   :item-title="item => item.name"
-                  :item-value="item => item.name"
+                  :item-value="item => item.id"
                   chips
-                  multiple
-                  eager
+                 
+                 
                 />
               </VCol>
 

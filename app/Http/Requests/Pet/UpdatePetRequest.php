@@ -11,7 +11,7 @@ class UpdatePetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->can("update pet");
+        return true;
     }
 
     /**

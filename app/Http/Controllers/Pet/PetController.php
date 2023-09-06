@@ -7,7 +7,7 @@ use App\Http\Resources\Pet\PetListResource;
 use App\Models\Pet\Pet;
 use App\Http\Requests\Pet\StorePetRequest;
 use App\Http\Requests\Pet\UpdatePetRequest;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -46,9 +46,14 @@ class PetController extends Controller
             ->paginate($perPage)
             ->withQueryString();
 
+            $userList = User::whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'admin');
+            })->get();
+
         $props = [
             'data' => PetListResource::collection($data),
             'params' => $request->all(),
+            'userList' => $userList
         ];
 
         if ($request->wantsJson()) {
@@ -59,7 +64,7 @@ class PetController extends Controller
         {
             return redirect()->route('pets.index', ['page' => 1]);
         }
-
+        
         return Inertia::render('Pet/Index', $props);
     }
 

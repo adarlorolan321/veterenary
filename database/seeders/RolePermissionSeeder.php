@@ -16,60 +16,13 @@ class RolePermissionSeeder extends Seeder
     {
         $roles = [
             'Super Admin' => [
-                'access dashboard',
-                'access profile',
-
-                'access user',
-                'insert user',
-                'edit user',
-                'update user',
-                'delete user',
-                'view user',
-
-                'access organization',
-                'insert organization',
-                'edit organization',
-                'update organization',
-                'delete organization',
-                'view organization',
-
-                'access payment',
-                'insert payment',
-                'edit payment',
-                'update payment',
-                'delete payment',
-                'view payment',
-
-                'access file',
-                'insert file',
-                'edit file',
-                'update file',
-                'delete file',
-                'view file',
-
-                'access subscription',
-                'insert subscription',
-                'edit subscription',
-                'update subscription',
-                'delete subscription',
-                'view subscription',
-
-
-                'access admin',
-                'insert admin',
-                'edit admin',
-                'update admin',
-                'delete admin',
-                'view admin',
-
-                'access price',
-                'insert price',
-                'edit price',
-                'update price',
-                'delete price',
-                'view price',
-
-                'download file'
+                'store pet',
+                'access pet',
+                'insert pet',
+                'edit pet',
+                'update pet',
+                'delete pet',
+                'view pet',
             ],
             'Admin' => [
                 'access profile',
@@ -80,73 +33,22 @@ class RolePermissionSeeder extends Seeder
                 'update file',
                 'delete file',
                 'view file',
+                
+                'store pet',
+                'access pet',
+                'insert pet',
+                'edit pet',
+                'update pet',
+                'delete pet',
+                'view pet',
 
                 'download file'
             ],
             'Org Admin' => [
-                'access dashboard',
-                'access org staff',
-                'access org invites',
-                'access org setting',
-                'access profile',
-                'access org payment',
-                'access org profile',
-                'access org subscription',
-                'access org payment method',
-
-                'insert org card',
-                'edit org card',
-
-                'insert org staff',
-                'edit org staff',
-                'update org staff',
-                'delete org staff',
-                'view org staff',
-
-                'access org file',
-                'insert org file',
-                'edit org file',
-                'update org file',
-                'delete org file',
-                'view org file',
+               
             ],
-            'Associate / File Preparer' => [
-                'access profile',
-
-                'access org file'
-            ],
-            'Manager / File Reviewer' => [
-                'access profile',
-
-                'access org file'
-            ],
-            'Partner' => [
-                'access dashboard',
-                'access org staff',
-                'access org invites',
-                'access org setting',
-                'access profile',
-                'access org payment',
-                'access org profile',
-                'access org subscription',
-                'access org payment method',
-
-                'insert org card',
-                'edit org card',
-
-                'insert org staff',
-                'edit org staff',
-                'update org staff',
-                'delete org staff',
-                'view org staff',
-
-                'access org file',
-                'insert org file',
-                'edit org file',
-                'update org file',
-                'delete org file',
-                'view org file',
-            ],
+           
+          
         ];
 
         foreach ($roles as $role => $permissions) {

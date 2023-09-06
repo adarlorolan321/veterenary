@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Appointment\AppointmentController;
+use App\Http\Controllers\AppointmentCalendarController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Pet\PetController;
@@ -34,5 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('pets', PetController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('calendar', AppointmentCalendarController::class);
+    Route::resource('appointments', AppointmentController::class);
+
+    
 });
 require __DIR__ . '/auth.php';

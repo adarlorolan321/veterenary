@@ -10,6 +10,10 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        "pet_id","vet_id","appointment_date","appointment_time","reason_for_visit","status",
+        "pet_id","extendedProps","start","end","allDay","url",
+    ];
+
+    protected $casts = [
+        'extendedProps' => 'array',
     ];
 }

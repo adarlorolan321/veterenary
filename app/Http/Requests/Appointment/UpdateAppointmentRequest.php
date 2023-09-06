@@ -11,7 +11,7 @@ class UpdateAppointmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->can("update appointment");
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "pet_id" => ["required"],"vet_id" => ["required"],"appointment_date" => ["required"],"appointment_time" => ["required"],"reason_for_visit" => ["required"],"status" => ["required"],
+            "pet_id" => ["required"],"extendedProps" => ["required"],"start" => ["required"],"end" => ["required"],"allDay" => ["required"],"url" => ["required"],
         ];
     }
 }

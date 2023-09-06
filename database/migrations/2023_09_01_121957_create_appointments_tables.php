@@ -11,14 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::create('appointments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('pet_id');
+        //     $table->foreignId('vet_id');
+        //     $table->string('appointment_date');
+        //     $table->string('appointment_time');
+        //     $table->string('reason_for_visit');
+        //     $table->string('status');
+        //     $table->timestamps();
+        // });
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pet_id');
-            $table->foreignId('vet_id');
-            $table->string('appointment_date');
-            $table->string('appointment_time');
-            $table->string('reason_for_visit');
-            $table->string('status');
+           
+            $table->json('extendedProps');
+            $table->string('start');
+            $table->string('end');
+            $table->string('allDay');
+            $table->string('url');
             $table->timestamps();
         });
     }

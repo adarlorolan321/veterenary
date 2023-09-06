@@ -54,7 +54,7 @@ class AppointmentController extends Controller
             return redirect()->route('appointments.index', ['page' => 1]);
         }
 
-        return Inertia::render('Admin/Appointment', $props);
+        return Inertia::render('AppointmentCalendar/sample', $props);
     }
 
     /**
@@ -68,9 +68,16 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAppointmentRequest $request)
+    public function store(Request $request)
     {
-        $data = Appointment::create($request->validated());
+
+        $dataToInsert = $request->all();
+        
+        // dd($dataToInsert['event']);
+
+
+       
+        $data = Appointment::create($dataToInsert['event']);
         sleep(1);
 
         if ($request->wantsJson()) {
@@ -110,10 +117,14 @@ class AppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAppointmentRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
+        $dataToInsert = $request->all();
+        
+        // dd($dataToInsert['event']);
+        // $dataToInsert['event']['pet_id'] = 1;
         $data = Appointment::findOrFail($id);
-        $data->update($request->validated());
+        $data->update($dataToInsert['event']);
         sleep(1);
 
         if ($request->wantsJson()) {

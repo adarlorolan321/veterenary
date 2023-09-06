@@ -11,7 +11,7 @@ class StorePetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->can("store pet");
+        return true;
     }
 
     /**

@@ -15,8 +15,6 @@ import { HorizontalNavLayout } from "@layouts";
 import { VNodeRenderer } from "@layouts/components/VNodeRenderer";
 import { usePage, router } from "@inertiajs/vue3";
 
-
-
 const { appRouteTransition } = useThemeConfig();
 </script>
 
@@ -27,10 +25,9 @@ const { appRouteTransition } = useThemeConfig();
         <!-- <NavbarThemeSwitcher /> -->
         <UserProfile class="ml-auto mr-2" />
       </VAppBar>
-    
+
       <VNavigationDrawer class="bg-deep-purple" theme="dark" permanent>
         <VList class="menu" color="transparent">
-         
           <VListItem
             :class="route().current() == 'dashboard.index' ? 'active' : ''"
             prepend-icon="mdi-view-dashboard"
@@ -38,11 +35,17 @@ const { appRouteTransition } = useThemeConfig();
             :href="route('dashboard.index')"
           />
           <VListItem
-          :class="route().current() == 'pets.index' ? 'active' : ''"
-            
-            
+            :class="route().current() == 'pets.index' ? 'active' : ''"
             :href="route('pets.index')"
-          prepend-icon="tabler-paw-filled" title="Pets" />
+            prepend-icon="tabler-paw-filled"
+            title="Pets"
+          />
+          <VListItem
+            :class="route().current() == 'appointments.index' ? 'active' : ''"
+            :href="route('appointments.index')"
+            prepend-icon="tabler-calendar-check"
+            title="Appointment"
+          />
 
           <VListItem prepend-icon="mdi-gavel" title="Admin" />
         </VList>
@@ -78,6 +81,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

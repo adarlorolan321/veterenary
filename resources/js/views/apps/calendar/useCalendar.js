@@ -35,11 +35,11 @@ export const useCalendar = (event, isEventHandlerSidebarActive, isLeftSidebarOpe
 
   // 👉 Calendar colors
   const calendarsColor = {
-    Business: 'primary',
-    Holiday: 'success',
-    Personal: 'error',
-    Family: 'warning',
-    ETC: 'info',
+    Checkup: 'primary',
+    Personal: 'success',
+    Grooming: 'error',
+    Others: 'warning',
+   
   }
 
 
@@ -55,7 +55,6 @@ export const useCalendar = (event, isEventHandlerSidebarActive, isLeftSidebarOpe
       url,
       extendedProps: {
         calendar,
-        guests,
         location,
         description,
       },
@@ -66,17 +65,20 @@ export const useCalendar = (event, isEventHandlerSidebarActive, isLeftSidebarOpe
 
   // 👉 Fetch events
   const fetchEvents = (info, successCallback) => {
+    
     // If there's no info => Don't make useless API call
     if (!info)
       return
     store.fetchEvents()
       .then(r => {
-        successCallback(r.data.map(e => ({
+        successCallback(r.data.data.map(e => ({
           ...e,
 
           // Convert string representation of date to Date object
-          start: new Date(e.start),
-          end: new Date(e.end),
+          title: "Taken",
+          start: `${e.start}`,
+          end: `${e.end}`,
+         
         })))
       })
       .catch(e => {

@@ -6,39 +6,37 @@ export const useCalendarStore = defineStore('calendar', {
     availableCalendars: [
       {
         color: 'error',
-        label: 'Personal',
+        label: 'Grooming',
       },
       {
         color: 'primary',
-        label: 'Business',
+        label: 'Checkup',
       },
       {
         color: 'warning',
-        label: 'Family',
+        label: 'Others',
       },
       {
         color: 'success',
-        label: 'Holiday',
+        label: 'Personal',
       },
-      {
-        color: 'info',
-        label: 'ETC',
-      },
+    
     ],
-    selectedCalendars: ['Personal', 'Business', 'Family', 'Holiday', 'ETC'],
+    selectedCalendars: ['Personal', 'Checkup', 'Grooming', 'Others'],
   }),
   actions: {
     async fetchEvents() {
-      return axios.get('/apps/calendar/events', { params: { calendars: this.selectedCalendars.join(',') } })
+      return axios.get('/appointments', { params: { calendars: this.selectedCalendars.join(',') } })
     },
     async addEvent(event) {
-      return axios.post('/apps/calendar/events', { event })
+     
+      return axios.post('/appointments', { event })
     },
     async updateEvent(event) {
-      return axios.post(`/apps/calendar/events/${event.id}`, { event })
+      return axios.put(`/appointments/${event.id}`, { event })
     },
     async removeEvent(eventId) {
-      return axios.delete(`/apps/calendar/events/${eventId}`)
+      return axios.delete(`/appointments/${eventId}`)
     },
   },
 })
